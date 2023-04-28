@@ -1,18 +1,31 @@
+import PropTypes from 'prop-types';
+import { StatisticsSection, Title, StatList, Item, Label, Percentage } from './Statistics.styled';
+import { getRandomHexColor } from './getRandomHexColor';
+  
 export const Statistics = ({ title, stats}) => {
     return (
-        <section class="statistics">
-            {title && <h2 class="title">{title}</h2>}
+        <StatisticsSection>
+            {title && <Title>{title}</Title>}
 
-            <ul class="stat-list">
-            {stats.map(data => (
-                <li key={data.id} class="item">
-                <span class="label">{data.label}</span>
-                <span class="percentage">{data.percentage}%</span>
-                </li>
+            <StatList>
+            {stats.map(({ id, label, percentage}) => (
+                <Item key={id} style={{ backgroundColor: getRandomHexColor() }}>
+                <Label>{label}</Label>
+                <Percentage>{percentage}%</Percentage>
+                </Item>
                 ))}
-            </ul>
-        </section>
+            </StatList>
+        </StatisticsSection>
     );
 };
 
-
+Statistics.propTypes = {
+    title: PropTypes.string,
+    stats: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.string.isRequired,
+          label: PropTypes.string.isRequired,
+          percentage: PropTypes.number.isRequired,
+        })
+    ),
+};
