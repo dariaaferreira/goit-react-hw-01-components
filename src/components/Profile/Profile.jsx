@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import { ProfileContainer, ProfileDescription, Avatar, Name, Tag, Location, Stats, StatsItem, Label, Quantity } from './Profile.styled';
 
-export const Profile = ({ username, tag, location, avatar, stats }) => {
+export const Profile = ({ username, tag, location, avatar, stats: { followers, views, likes } }) => {
     return (
     <ProfileContainer>
         <ProfileDescription>
@@ -17,15 +17,15 @@ export const Profile = ({ username, tag, location, avatar, stats }) => {
         <Stats>
             <StatsItem>
                 <Label>Followers</Label>
-                <Quantity>{stats.followers}</Quantity>
+                <Quantity>{followers}</Quantity>
             </StatsItem>
             <StatsItem>
                 <Label>Views</Label>
-                <Quantity>{stats.views}</Quantity>
+                <Quantity>{views}</Quantity>
             </StatsItem>
             <StatsItem>
                 <Label>Likes</Label>
-                <Quantity>{stats.likes}</Quantity>
+                <Quantity>{likes}</Quantity>
             </StatsItem>
         </Stats>
     </ProfileContainer>
